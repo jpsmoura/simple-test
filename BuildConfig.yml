@@ -1,0 +1,36 @@
+{
+   "kind": "BuildConfig",
+   "apiVersion": "v1",
+   "metadata": {
+      "name": "camelrest",
+      "labels": {
+         "application": "camelrest"
+      }
+   },
+   "spec": {
+      "source": {
+         "type": "Git",
+         "git": {
+            "uri": "https://github.com/jpsmoura/simple-test.git",
+            "ref": "master"
+         },
+         "contextDir":""
+      },
+      "strategy": {
+         "type": "Docker",
+         "dockerStrategy": {
+            "from": {
+               "kind": "ImageStreamTag",
+               "namespace": "openshift",
+               "name": "websphere-liberty:webProfile7"
+            }
+         }
+      },
+      "output": {
+         "to": {
+            "kind": "ImageStreamTag",
+            "name": "camelrest:latest"
+         }
+      },
+   }
+}
